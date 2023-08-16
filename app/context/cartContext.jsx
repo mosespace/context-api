@@ -8,7 +8,6 @@ export const productContext = createContext();
 export function CartProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-
   useEffect(() => {
     async function getProducts() {
       try {
@@ -39,7 +38,6 @@ export function CartProvider({ children }) {
 }
 
 //3) Creating the Use Context Hook----------------------------------------------------------------
-
 export function useCart() {
   // use the useContext hook to access the context data
   const context = useContext(productContext);
