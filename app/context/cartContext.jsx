@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 //1) Creating the context----------------------------------------------------------------
-export const cartContext = createContext();
+export const productContext = createContext();
 
 //2) Creating the provider----------------------------------------------------------------
 export function CartProvider({ children }) {
@@ -32,9 +32,9 @@ export function CartProvider({ children }) {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
   return (
-    <cartContext.Provider value={{ products, cart, addToCart, removeFromCart }}>
+    <productContext.Provider value={{ products, cart, addToCart, removeFromCart }}>
       {children}
-    </cartContext.Provider>
+    </productContext.Provider>
   );
 }
 
@@ -42,6 +42,6 @@ export function CartProvider({ children }) {
 
 export function useCart() {
   // use the useContext hook to access the context data
-  const context = useContext(cartContext);
+  const context = useContext(productContext);
   return context;
 }
