@@ -8,6 +8,10 @@ export const productContext = createContext();
 export function CartProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+
+  {/*This Use State function fetches all the products and gets them directly from the api; it try
+  to fetch the products and then if it fails, it returns an error object
+*/}
   useEffect(() => {
     async function getProducts() {
       try {
@@ -16,7 +20,7 @@ export function CartProvider({ children }) {
         setProducts(allProducts);
       } catch (error) {
         console.log(
-          "An error occured while getting products in the context api",
+          "An error occurred while fetching products in the context api",
           error
         );
       }
@@ -24,9 +28,17 @@ export function CartProvider({ children }) {
     getProducts();
   }, []);
 
+  {/*Ths step adds a single product to the cart and the after sets the cart
+  to have it's previous data nad the add the new product. This makes it easy on the client side to be able
+  to add multiple products to the cart and being able to see the previous products already added there.
+*/}
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
+    
+
   };
+
+  {/*This step removes a single product from the cart whose id is equal to the original product id*/}
   const removeFromCart = (productId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };

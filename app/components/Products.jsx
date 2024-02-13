@@ -1,10 +1,13 @@
 "use client";
 import React from "react";
-import { useCart } from "../context/cartContext";
 import Link from "next/link";
+import { finalContext } from "@/context/lessonContext";
+import { useCart } from "../context/cartContext";
 
 export default function Products() {
   const { products } = useCart();
+
+  // const { products } = finalContext();
   const { addToCart } = useCart();
 
   // console.log(products);
